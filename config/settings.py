@@ -2,6 +2,7 @@ from decouple import config
 
 LOG_LEVEL = config("LOG_LEVEL", default="INFO")
 TOKEN = config("TOKEN")
+DB_TICKERS_QUERY = config("DB_TICKERS_QUERY")
 INSERTER_MAX_RETRIES = config("INSERTER_MAX_RETRIES", default=3, cast=int)
 REQUEST_MAX_RETRIES = config("REQUEST_MAX_RETRIES", default=3, cast=int)
 REQUEST_BACKOFF_FACTOR = config("REQUEST_BACKOFF_FACTOR", default=2, cast=int)
