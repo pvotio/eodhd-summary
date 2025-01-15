@@ -40,6 +40,14 @@ class EODHD:
             logger.error(f"Request failed for {args[0]}: {str(e)}")
             raise
 
+    def get_fundamental(self, ticker):
+        url = urljoin(self.BASE, f"fundamentals/{ticker}")
+        params = {
+            "filter": "General::FullTimeEmployees,General::UpdatedAt,General::AddressData::ZIP,General::AddressData::Country,General::AddressData::State,General::AddressData::City,Highlights,Valuation,SharesStats,SplitsDividends::ForwardAnnualDividendRate,SplitsDividends::ForwardAnnualDividendYield,SplitsDividends::PayoutRatio,AnalystRatings,General::FullTimeEmployees,General::UpdatedAt,Highlights,Valuation,SharesStats,SplitsDividends::ForwardAnnualDividendRate,General::Sector,General::Industry,General::GicSector,General::GicGroup,General::GicIndustry,General::GicSubIndustry,SplitsDividends::ForwardAnnualDividendYield,SplitsDividends::PayoutRatio,AnalystRatings,ESGScores,Financials::Balance_Sheet"
+        }
+        resp = self.request("get", url, params=params)
+        return resp.json()
+
     @property
     def params(self):
         logger.debug("Generating request parameters with API token.")
