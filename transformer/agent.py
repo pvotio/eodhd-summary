@@ -5,18 +5,18 @@ import pandas as pd
 
 class Agent:
     FIELDS = {
-        "etl.eodhd_analyst_ratings": [
-            "AnalystRatings",
-            [
-                "Rating",
-                "TargetPrice",
-                "StrongBuy",
-                "Buy",
-                "Hold",
-                "Sell",
-                "StrongSell",
-            ],
-        ],
+        # "etl.eodhd_analyst_ratings": [
+        #     "AnalystRatings",
+        #     [
+        #         "Rating",
+        #         "TargetPrice",
+        #         "StrongBuy",
+        #         "Buy",
+        #         "Hold",
+        #         "Sell",
+        #         "StrongSell",
+        #     ],
+        # ],
         "etl.eodhd_basics": [
             "#",
             [
