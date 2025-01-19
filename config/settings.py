@@ -2,6 +2,8 @@ from decouple import config
 
 LOG_LEVEL = config("LOG_LEVEL", default="INFO")
 TOKEN = config("TOKEN")
+SUMMARY_OUTPUT_TABLE = config("SUMMARY_OUTPUT_TABLE")
+SUMMARY_HIST_OUTPUT_TABLE = config("SUMMARY_HIST_OUTPUT_TABLE")
 DB_TICKERS_QUERY = config("DB_TICKERS_QUERY")
 INSERTER_MAX_RETRIES = config("INSERTER_MAX_RETRIES", default=3, cast=int)
 REQUEST_MAX_RETRIES = config("REQUEST_MAX_RETRIES", default=3, cast=int)
