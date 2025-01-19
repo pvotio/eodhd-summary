@@ -6,7 +6,7 @@ from transformer import Agent
 
 def main():
     logger.info("Loading tickers...")
-    tickers = load_tickers()[:100]
+    tickers = load_tickers()
     logger.info(f"{len(tickers)} Tickers loaded from database.")
     logger.info("Initializing Engine...")
     engine = Engine(tickers)
