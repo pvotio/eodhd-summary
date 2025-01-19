@@ -22,7 +22,7 @@ class EODHD:
             "Content-Type": "application/json",
         }
         kwargs["headers"] = headers
-        if not "params" in kwargs:
+        if "params" not in kwargs:
             kwargs["params"] = {}
 
         kwargs["params"].update(self.params)
@@ -42,10 +42,7 @@ class EODHD:
 
     def get_fundamental(self, ticker):
         url = urljoin(self.BASE, f"fundamentals/{ticker}")
-        params = {
-            "filter": "General::FullTimeEmployees,General::UpdatedAt,General::AddressData::ZIP,General::AddressData::Country,General::AddressData::State,General::AddressData::City,Highlights,Valuation,SharesStats,SplitsDividends::ForwardAnnualDividendRate,SplitsDividends::ForwardAnnualDividendYield,SplitsDividends::PayoutRatio,AnalystRatings,General::FullTimeEmployees,General::UpdatedAt,Highlights,Valuation,SharesStats,SplitsDividends::ForwardAnnualDividendRate,General::Sector,General::Industry,General::GicSector,General::GicGroup,General::GicIndustry,General::GicSubIndustry,SplitsDividends::ForwardAnnualDividendYield,SplitsDividends::PayoutRatio,AnalystRatings,ESGScores,Financials::Balance_Sheet"
-        }
-        resp = self.request("get", url, params=params)
+        resp = self.request("get", url)
         return resp.json()
 
     @property
