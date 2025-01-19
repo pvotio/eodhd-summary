@@ -1,5 +1,4 @@
 import threading
-from datetime import datetime, timedelta
 
 from client.eodhd import EODHD
 from config import logger, settings
@@ -36,12 +35,10 @@ class Engine:
             if ticker in self.data or ticker in ["", None]:
                 continue
 
-            self.data[self.bbg_tickers_map[ticker]] = None
+            self.data[ticker] = None
 
             try:
-                self.data[self.bbg_tickers_map[ticker]] = self.eodhd.get_fundamental(
-                    ticker
-                )
+                self.data[ticker] = self.eodhd.get_fundamental(ticker)
             except ValueError:
                 pass
             except Exception:
