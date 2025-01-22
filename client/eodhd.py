@@ -27,7 +27,7 @@ class EODHD:
 
         kwargs["params"].update(self.params)
         logger.debug(f"Request headers: {headers}")
-        logger.debug(f"Request parameters: {kwargs["params"]}")
+        logger.debug(f"Request parameters: {kwargs['params']}")
 
         try:
             response = self.session.request(method, *args, **kwargs)
