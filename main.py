@@ -19,6 +19,9 @@ def main():
     transformer = Agent(engine.data)
     tables = transformer.transform()
 
+    del engine
+    del transformer
+
     logger.info("Saving data to database...")
     conn = init_db_instance()
     for t, dataframe in tables.items():
