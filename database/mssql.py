@@ -84,7 +84,10 @@ class MSSQLDatabase(object):
         custom = {}
 
         for column in df.columns.tolist():
-            if "timestamp" in column.lower():
+            if column in ["noncontrollingInterestInConsolidatedEntity"]:
+                continue
+            
+            if "timestamp" in column.lower() or "date" in column.lower():
                 custom[column] = "datetime"
 
         try:
