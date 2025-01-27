@@ -137,9 +137,9 @@ class Agent:
             "Period": period,
             "CurrencyCode": currency_code,
         }
-        self._extract_balance_sheet_fields(row, bs_info)
-        self._extract_cash_flow_fields(row, cf_info)
-        self._extract_income_statement_fields(row, is_info)
+        self._extract_balance_sheet_fields(row, bs_info, prefix="balance_sheet_")
+        self._extract_cash_flow_fields(row, cf_info, prefix="cash_")
+        self._extract_income_statement_fields(row, is_info, prefix="income_")
         return row
 
     def _parse_single_ticker_fundamentals(
