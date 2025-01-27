@@ -70,7 +70,12 @@ class MSSQLDatabase(object):
             self.cnx.close()
 
     def insert_table(
-        self, df, table_name, if_exists="append", delete_prev_records=True
+        self,
+        df,
+        table_name,
+        if_exists="append",
+        delete_prev_records=True,
+        chunk_size=20000,
     ):
         self.reopen_connection()
         if delete_prev_records:
@@ -86,19 +91,26 @@ class MSSQLDatabase(object):
         for column in df.columns.tolist():
             if column in ["noncontrollingInterestInConsolidatedEntity"]:
                 continue
-            
+
             if "timestamp" in column.lower() or "date" in column.lower():
                 custom[column] = "datetime"
 
         try:
-            fast_to_sql(
-                df=df,
-                name=table_name,
-                conn=self.cnx,
-                if_exists=if_exists,
-                custom=custom,
+            total_rows = len(df)
+            logger.info(
+                f"Starting insertion of {total_rows} rows into {table_name} in chunks"
             )
-            logger.info(f"Inserted {len(df)} rows into {table_name} table")
+            for start in range(0, total_rows, chunk_size):
+                end = min(start + chunk_size, total_rows)
+                fast_to_sql(
+                    df=df.iloc[start:end],
+                    name=table_name,
+                    conn=self.cnx,
+                    if_exists=if_exists if start == 0 else "append",
+                    custom=custom,
+                )
+                logger.info(f"Inserted rows {start + 1} to {end} into {table_name}")
+
             self.cnx.commit()
         except Exception as e:
             logger.error(f"Error inserting into table {table_name}: {e}")
