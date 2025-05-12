@@ -109,7 +109,7 @@ class MSSQLDatabase(object):
                     if_exists=if_exists if start == 0 else "append",
                     custom=custom,
                 )
-                logger.info(f"Inserted rows {start + 1} to {end} into {table_name}")
+                logger.debug(f"Inserted rows {start + 1} to {end} into {table_name}")
 
             self.cnx.commit()
         except Exception as e:
