@@ -2,6 +2,8 @@ from decouple import config
 
 LOG_LEVEL = config("LOG_LEVEL", default="INFO")
 TOKEN = config("TOKEN")
+CLIENT_BATCH_SIZE = config("CLIENT_BATCH_SIZE", default=1000, cast=int)
+INSERT_CHUNK_COUNT = config("INSERT_CHUNK_COUNT", default=20, cast=int)
 SUMMARY_OUTPUT_TABLE = config("SUMMARY_OUTPUT_TABLE")
 SUMMARY_HIST_OUTPUT_TABLE = config("SUMMARY_HIST_OUTPUT_TABLE")
 DB_TICKERS_QUERY = config("DB_TICKERS_QUERY")
