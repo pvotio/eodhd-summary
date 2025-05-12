@@ -509,7 +509,8 @@ class Agent:
         )
 
     def _get_latest_financials(self, section: dict) -> dict:
-        """Returns the dictionary with the largest date key from 'quarterly' or if none, from 'yearly'."""
+        """Returns the dictionary with the largest date key
+        from 'quarterly' or if none, from 'yearly'."""
 
         def pick_latest(d):
             if not d or not isinstance(d, dict):
